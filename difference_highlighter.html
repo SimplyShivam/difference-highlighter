@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Difference Highlighter</title>
+    <script src="https://unpkg.com/diff-match-patch"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Difference Highlighter</h1>
+    </div>
+
+    <div class="container">
+        <!-- Heading Section -->
+        <div class="switch-container">
+            <h2>Diff Checker</h2>
+            <div>
+                <span>Case Sensitive</span>
+                <label class="switch">
+                    <input type="checkbox" id="caseSensitiveToggle" onchange="updateCaseSensitive()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Text Section -->
+        <div class="input-section">
+            <div class="text-box">
+                <div class="line-numbers" id="line-numbers-1"></div>
+                <textarea id="original" oninput="updateLineNumbers('original', 'line-numbers-1')"
+                    onscroll="syncScroll('original', 'line-numbers-1')"></textarea>
+            </div>
+            <div class="text-box">
+                <div class="line-numbers" id="line-numbers-2"></div>
+                <textarea id="compared" oninput="updateLineNumbers('compared', 'line-numbers-2')"
+                    onscroll="syncScroll('compared', 'line-numbers-2')"></textarea>
+            </div>
+        </div>
+
+        <button class="compare-btn" onclick="compareText()">Compare Text</button>
+
+        <!-- Error Message -->
+        <div id="empty-text-message" class="empty-text-message">Please add text in both fields.</div>
+
+        <!-- Comparison Section -->
+        <div id="comparison-section" class="comparison-section">
+            <div class="comparison-header">Text Differences</div>
+            <div class="comparison-container" id="result">
+                <div class="comparison" id="output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
